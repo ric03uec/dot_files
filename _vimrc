@@ -18,8 +18,10 @@ map <C-up> :tabr<cr>
 map <C-down> :tabl<cr>
 map <C-left> :tabp<cr>
 map <C-right> :tabn<cr>
+map <space> /*())(<cr>
 cmap tn tabnew
 cmap vs vsplit
 syntax enable
 filetype plugin off
 nmap <C-x> :w<CR>:make<CR>:cw<CR>
+nmap <cr> G
