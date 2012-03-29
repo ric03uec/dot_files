@@ -24,6 +24,6 @@ cmap tn tabnew
 cmap vs vsplit
 syntax enable
 filetype plugin off
-nmap <C-x> :w<CR>:make<CR>:cw<CR>
-nmap <f5> :!jslint --var --eqeq --white %<cr>
+nmap <C-x> :w<CR>
+nmap <f5> :!jslint --var --eqeq --white --forin%<cr>
 nmap <cr> G
