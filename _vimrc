@@ -22,8 +22,23 @@ map <C-right> :tabn<cr>
 map <space> /*())(<cr>
 cmap tn tabnew
 cmap vs vsplit
+cmap rc so ~/.vimrc
+cmap bu buffer
 syntax enable
 filetype plugin off
 nmap <C-x> :w<CR>
-nmap <f5> :!jslint --var --eqeq --white --forin%<cr>
 nmap <cr> G
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+inoremap (      ()<Left>
+inoremap (<CR>  (<CR>)<Esc>O
+inoremap ((     (
+inoremap ()     ()
+
+inoremap [      []<Left>
+inoremap [<CR>  [<CR>]<Esc>O
+inoremap [[     [
+inoremap []     []
