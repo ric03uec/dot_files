@@ -14,7 +14,10 @@ set incsearch
 set ignorecase
 set smartcase
 set filetype=on
+set makeprg=nodelint
 set backspace=indent,eol,start
+set undofile
+set undodir=/tmp
 map <C-up> :tabr<cr>
 map <C-down> :tabl<cr>
 map <C-left> :tabp<cr>
@@ -22,11 +25,16 @@ map <C-right> :tabn<cr>
 map <space> /*())(<cr>
 cmap tn tabnew
 cmap vs vsplit
-cmap rc so ~/.vimrc
 cmap bu buffer
+cmap ntt NERDTreeToggle
+cmap ntf NERDTreeFind
+nnoremap <f4> :buffers<CR>:buffer<Space>
 syntax enable
 filetype plugin off
 nmap <C-x> :w<CR>
+nmap <f5> :!jslint --var --eqeq --white --forin --color %<cr>
+nmap <C-v> :w<CR>:make %<CR>:cw<CR>
+nmap <f6> :!jshint %<cr>
 nmap <cr> G
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
