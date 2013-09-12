@@ -1,12 +1,12 @@
 [user]
-	name = devashish
-	email = devashish.86@gmail.com
+  name = name
+  email = this.is.not.my.email@gmail.com
 [alias]
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [diff]
   tool = vimdiff
 [color]
-	ui = auto
+  ui = auto
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -23,6 +23,6 @@
   changed = green
   untracked = cyan
 [rerere]
-	enabled = true
+  enabled = true
 [merge]
-	tool = vimdiff
+  tool = vimdiff
