@@ -1,5 +1,34 @@
+set nocompatible              " be iMproved
+filetype off                  " required!
+
 call pathogen#infect()
 call pathogen#helptags()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" original repos on GitHub
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'kien/ctrlp.vim'
+Bundle 'garbas/vim-snipmate'
+Bundle "honza/vim-snippets"
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'ShowTrailingWhitespace'
+Bundle 'DeleteTrailingWhitespace'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-markdown'
+Bundle 'suan/vim-instant-markdown'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/nerdtree'
+
 filetype plugin indent on
 syntax on
 autocmd BufNewFile,BufRead *.jade set filetype=jade
