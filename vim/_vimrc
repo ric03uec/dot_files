@@ -21,6 +21,7 @@ Bundle 'FuzzyFinder'
 Bundle 'ShowTrailingWhitespace'
 Bundle 'DeleteTrailingWhitespace'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-markdown'
 Bundle 'suan/vim-instant-markdown'
 Bundle 'Lokaltog/vim-easymotion'
@@ -39,6 +40,7 @@ autocmd FileType htmll set ft=htmldjango.html " For SnipMate
 au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 let g:session_autoload = 'no'
+let NERDTreeIgnore = ['\.pyc$']
 set nu
 set expandtab
 set cindent
