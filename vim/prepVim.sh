@@ -35,6 +35,7 @@ echo "========== vim install done ============"
 echo "========== Installing plugins==========="
 
 echo "-------- Installing Vundle ------------"
+rm -rf ~/.vim/bundle/vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 echo "--------- Installing exuberant-ctags -------------"
@@ -48,6 +49,7 @@ sudo fc-cache -vf
 sudo mv 10-powerline-symbols.conf /etc/fonts/conf.d/
 
 echo "--------- Installing YCM dependencies --------"
+rm -rf ~/.vim/bundle/YouCompleteMe
 cd ~/.vim/bundle && git clone https://github.com/Valloric/YouCompleteMe.git
 cd ~/.vim/bundle/YouCompleteMe
 ./install.sh --clang-completer
