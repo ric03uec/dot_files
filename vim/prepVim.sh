@@ -36,6 +36,9 @@ echo "========== Installing plugins==========="
 echo "-------- Installing Vundle ------------"
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
+echo "--------- Installing exuberant-ctags -------------"
+sudo apt-get install -y exuberant-ctags
+
 echo "-------- Installing powerline dependencies --------"
 pip install git+git://github.com/Lokaltog/powerline
 wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
