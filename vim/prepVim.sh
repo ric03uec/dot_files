@@ -52,9 +52,16 @@ echo "--------- Installing YCM dependencies --------"
 rm -rf ~/.vim/bundle/YouCompleteMe
 cd ~/.vim/bundle && git clone https://github.com/Valloric/YouCompleteMe.git
 cd ~/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive
 ./install.sh --clang-completer
 
 echo "========= Updating vimrc =================="
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 cp -vr _vimrc ~/.vimrc
+
+###################################################
+# start vim and run :BundleInstall to install all the plugins
+###################################################
+vim -c BundleInstall
+
