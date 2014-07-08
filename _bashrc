@@ -117,3 +117,5 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias v='vim'
+
+alias dtf='find . -type f \( -name '*.swp' \) -delete'
