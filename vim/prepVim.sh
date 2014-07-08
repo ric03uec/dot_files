@@ -11,6 +11,7 @@ sudo apt-get -yy install libncurses5-dev libgnome2-dev libgnomeui-dev \
 echo "Downloading vim "
 cd /tmp
 wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+#wget http://mirrors-ru.go-parts.com/pub/vim/unix/vim-7.4.tar.bz2
 echo "Unzipping vim"
 tar -xjvf vim-7.4.tar.bz2
 cd vim74
