@@ -50,3 +50,8 @@ echo "--------- Installing YCM dependencies --------"
 cd ~/.vim/bundle && git clone https://github.com/Valloric/YouCompleteMe.git
 cd ~/.vim/bundle/YouCompleteMe
 ./install.sh --clang-completer
+
+echo "========= Updating vimrc =================="
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+cp -vr _vimrc ~/.vimrc
