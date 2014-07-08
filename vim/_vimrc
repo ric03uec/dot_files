@@ -1,64 +1,117 @@
-set nocompatible              " be iMproved
-filetype off                  " required!
+" this is my vimrc
 
-call pathogen#infect()
-call pathogen#helptags()
+" automatically reload vimrc when its saved
+" au BufWritePost .vimrc so ~/.vimrc
+
+" BEGIN VUNDLE CONFIG
+set nocompatible               " be iMproved
+filetype off                      " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+" Let Vundle manage Vundle (e.g. for updates)
+Bundle "gmarik/vundle"
 
-" original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'kien/ctrlp.vim'
-Bundle 'garbas/vim-snipmate'
-Bundle "honza/vim-snippets"
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'ShowTrailingWhitespace'
-Bundle 'DeleteTrailingWhitespace'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-markdown'
-Bundle 'suan/vim-instant-markdown'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
+" Vundle bundles
+Bundle "Valloric/YouCompleteMe"
+Bundle "tpope/vim-fugitive"
+Bundle "airblade/vim-gitgutter"
+Bundle "skammer/vim-css-color"
+Bundle "tpope/vim-surround"
+Bundle "scrooloose/nerdcommenter"
+Bundle "scrooloose/nerdtree"
+Bundle "scrooloose/syntastic"
+Bundle "vim-scripts/taglist.vim"
+Bundle "kien/ctrlp.vim"
+Bundle "kwbdi.vim"
+Bundle "tpope/vim-markdown"
+Bundle "suan/vim-instant-markdown"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "jelera/vim-javascript-syntax"
+Bundle "bling/vim-airline"
+Bundle "Lokaltog/vim-powerline"
+Bundle "stephenmckinney/vim-solarized-powerline"
+Bundle "jnwhiteh/vim-golang"
+Bundle "xolox/vim-misc"
+Bundle "xolox/vim-session"
+Bundle "fatih/vim-go"
+Bundle "majutsushi/tagbar"
+Bundle 'ervandew/supertab'
 
-filetype plugin indent on
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+filetype plugin indent on     " required!
+" END VUNDLE CONFIG
+
+" automatically open the error window when there are errors and close it when there are none
+let g:syntastic_auto_loc_list=1
+
+" Only reload the markdown in the browser on save / a while after leaving
+" insert mode
+let g:instant_markdown_slow = 1
+filetype plugin on
+
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" syntax check with ctrl+s
+map <c-s> :SyntasticCheck<CR>
+let g:syntastic_python_checkers = ["pyflakes"]
+" let g:syntastic_javascript_checkers = ["jshint"]
+
+" ignore syntastic errors temporarily
+map \t :SyntasticToggleMode<CR> :SyntasticToggleMode<CR>
+
+" disable YouCompleteMe default mapping for \d and make our shortcut for Gdiff
+let g:ycm_key_detailed_diagnostics = ""
+let g:ycm_auto_trigger = 0
+noremap \d :Gdiff<CR>
+
+" disable gitgutter by default and map \f to toggle it
+let g:gitgutter_enabled = 1
+noremap \f :ToggleGitGutter<CR>
+
+" toggle line wrapping
+noremap \q :set invwrap<CR>
+
+" shortcut for git status via fugitive
+noremap \s :Gstatus<CR>
+noremap \a :Gwrite<CR>
+
+" set t_Co=256
 syntax on
-autocmd BufNewFile,BufRead *.jade set filetype=jade
-autocmd BufNewFile,BufRead *.html.erb set filetype=html
-autocmd BufNewFile,BufRead *.ejs set filetype=html
-autocmd FileType python set ft=python.django  " For SnipMate
-autocmd FileType htmll set ft=htmldjango.html " For SnipMate
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-let g:session_autoload = 'no'
-let NERDTreeIgnore = ['\.pyc$']
-set nu
-set expandtab
-set cindent
-set autoindent
-set softtabstop=2
-set shiftwidth=2
-set tabstop=2
-set modeline
-set ls=2
-set hlsearch
+set undofile
+set number
 set incsearch
 set ignorecase
-set smartcase
-set backspace=indent,eol,start
-set completeopt=menuone,longest,preview
-set undofile
-set undodir=~/.vim/undodir
+set showcmd
+set autoindent
+set hlsearch
+set ruler
+set cpoptions+=$
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+filetype indent on
+set smarttab
+set expandtab
+set wildmode=longest,list,full
+set wildmenu
+set foldnestmax=10
 set nofoldenable
+set foldlevel=1
+set hidden
+set backspace=indent,eol,start
+set undodir=~/.vim/undodir
+set smartcase
 map <C-up> :tabr<cr>
 map <C-down> :tabl<cr>
 map <C-h> :tabp<cr>
@@ -67,19 +120,14 @@ map <space> /*())(<cr>
 cmap tn tabnew
 cmap vs vsplit
 cmap bu buffer
+
+" map some useful nerdtree commands
+" noremap <c-n> :NERDTreeToggle<CR>
+" noremap <c-l> :NERDTreeFind<CR>
 cmap ntt NERDTreeToggle
 cmap ntf NERDTreeFind
-nnoremap <f4> :buffers<CR>:buffer<Space>
-nnoremap <F8> :TagbarToggle<CR>
-nmap <C-x> :w<CR>
-nmap \o :set paste!<CR>
-" move down/up row-wise instead of line-wise
-nmap j gj
-nmap k gk
-nmap <f5> :!jslint --var --eqeq --white --forin --color %<cr>
-nmap <C-v> :w<CR>:make %<CR>:cw<CR>
-nmap <cr> G
 
+" for autocompletion of brackets
 inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {{ {
@@ -94,23 +142,24 @@ inoremap [ []<Left>
 inoremap [<CR> [<CR>]<Esc>O
 inoremap [[ [
 inoremap [] []
-set statusline=\ "
-set statusline+=%1*%-25.80f%*\ " file name minimum 25, maxiumum 80 (right justified)
-set statusline+=%2*
-set statusline+=%h "help file flag
-set statusline+=%r "read only flag
-set statusline+=%m "modified flag
-set statusline+=%w "preview flag
-set statusline+=%*\ "
-set statusline+=%3*[
-set statusline+=%{strlen(&ft)?&ft:'none'} " filetype
-set statusline+=]%*\ "
-set statusline+=%4*%{fugitive#statusline()}%*\ " Fugitive
-set statusline+=%6*%{SyntasticStatuslineFlag()}%* " Syntastic Syntax Checking
-set statusline+=%= " right align
-set statusline+=%8*%-14.(%l,%c%V%)\ %<%P%* " offset
+" ------------------------------
 
-nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <f4> :buffers<CR>:buffer<Space>
+nnoremap <F8> :TagbarToggle<CR>
+nmap <C-x> :w<CR>
+" move down/up row-wise instead of line-wise
+nmap j gj
+nmap k gk
+nmap <C-v> :w<CR>:make %<CR>:cw<CR>
+nmap <cr> G
+
+set laststatus=2
+set t_Co=256
+
+colorscheme ironman
+let NERDTreeIgnore = ["\.pyc$"]
+autocmd  BufRead,BufNewFile *.html setfiletype htmldjango
+highlight Normal ctermbg=None
 
 " python support
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
@@ -126,30 +175,59 @@ let pymode_rope_extended_complete=1
 let pymode_lint=1
 cmap ln PyLintToggle
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,    " MacOSX/Linux
 " Sane Ignore For ctrlp
-let g:ctrlp_custom_ignore = {
-\ 'dir': '\.git$\|\.hg$\|\ve$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$',
-\ 'file': '\.exe$\|\.so$\|\.dat$|\.swp$'
-\ }
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*ve/*,*.git/*,*.so     " Linux/MacOSX
+let g:ctrlp_custom_ignore = {"dir": "\.git$\|\.hg$\|\ve$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp$", "file": "\.exe$\|\.so$\|\.dat$|\.swp$"}
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*ve/*,*node_modules/*,*.so,*.pyc     " Linux/MacOSX
 
-nnoremap <C-W>O :call MaximizeToggle ()<CR>
-nnoremap <C-W>o :call MaximizeToggle ()<CR>
-nnoremap <C-W><C-O> :call MaximizeToggle ()<CR>
+" cancel search highlighting
+nnoremap <C-c> :nohlsearch<CR>
 
-function! MaximizeToggle()
-  if exists("s:maximize_session")
-    exec "source " . s:maximize_session
-    call delete(s:maximize_session)
-    unlet s:maximize_session
-    let &hidden=s:maximize_hidden_save
-    unlet s:maximize_hidden_save
-  else
-    let s:maximize_hidden_save = &hidden
-    let s:maximize_session = tempname()
-    set hidden
-    exec "mksession! " . s:maximize_session
-    only
-  endif
-endfunction
+" automatically vimgrep for the latest search term in the *current buffer
+" only*
+nmap \g :vimgrep /<C-r>// %<CR>:botright copen<CR>
+
+nmap \n :cn<CR>
+nmap \p :cp<CR>
+
+
+" YankRing shortcut
+nmap \r :YRShow<CR>
+
+" make up/down keys not move over wrapped lines - when you want to go down,
+" always go directly down
+nmap j gj
+nmap k gk
+
+" in ctrlp, set working directory to closest to .git
+let g:ctrlp_working_path_mode=2
+
+" Markdown to HTML
+nmap <leader>md :%!/usr/local/bin/Markdown.pl --html4tags
+
+" Since we re-mapped capital J, map Ctrl+J to the default J which is the join line operation
+nore <C-J> J
+
+let g:clang_user_options="|| exit 0"
+
+" Taglist stuff
+let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Enable_Fold_Column=0
+highlight MyTagListFileName guifg=#00d2ff ctermfg=blue
+highlight MyTagListTitle guifg=#ff0086 gui=bold ctermfg=red
+map ) :TlistToggle<CR>
+
+" type Sc after highlighting a block to add comment in django templates
+" NOTE: 99 is the ascii code for "c"
+let b:surround_99 = "{% comment %}\r{% endcomment %}"
+
+au FileType javascript call JavaScriptFold()
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" go settings
+let g:go_play_open_browser = 0
+let g:go_fmt_fail_silently = 1
+let g:go_disable_autoinstall = 1

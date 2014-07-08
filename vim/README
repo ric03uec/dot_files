@@ -38,22 +38,7 @@
   ```
 
 ## Install vundle and pathogen  
-  these will be the primary ways any plugin will be installed
-
-  - Pathogen
-  ```
-  mkdir -p ~/.vim/autoload ~/.vim/bundle; \
-      curl -Sso ~/.vim/autoload/pathogen.vim \
-      https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-  ```
-  the following lines need to be added to .vimrc but not required if the file is copied from this repo
-
-  ```
-  execute pathogen#infect()
-  syntax on
-  filetype plugin indent on
-  ```
-  
+  this will be the primary ways any plugin will be installed
   - vundle  
 
   ```
