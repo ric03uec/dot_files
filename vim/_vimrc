@@ -6,6 +6,7 @@
 " BEGIN VUNDLE CONFIG
 set nocompatible               " be iMproved
 filetype off                      " required!
+filetype plugin indent off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -14,25 +15,20 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 
 " Vundle bundles
-Bundle "Valloric/YouCompleteMe"
 Bundle "tpope/vim-fugitive"
 Bundle "airblade/vim-gitgutter"
 Bundle "skammer/vim-css-color"
-Bundle "tpope/vim-surround"
 Bundle "scrooloose/nerdcommenter"
 Bundle "scrooloose/nerdtree"
 Bundle "scrooloose/syntastic"
 Bundle "vim-scripts/taglist.vim"
 Bundle "kien/ctrlp.vim"
 Bundle "kwbdi.vim"
-Bundle "tpope/vim-markdown"
-Bundle "suan/vim-instant-markdown"
 Bundle "Lokaltog/vim-easymotion"
 Bundle "jelera/vim-javascript-syntax"
 Bundle "bling/vim-airline"
 Bundle "Lokaltog/vim-powerline"
 Bundle "stephenmckinney/vim-solarized-powerline"
-Bundle "jnwhiteh/vim-golang"
 Bundle "xolox/vim-misc"
 Bundle "xolox/vim-session"
 Bundle "fatih/vim-go"
@@ -49,7 +45,9 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on     " required!
+syntax on
 " END VUNDLE CONFIG
 
 " automatically open the error window when there are errors and close it when there are none
@@ -61,11 +59,13 @@ let g:instant_markdown_slow = 1
 filetype plugin on
 
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+au BufRead,BufNewFile *.go set filetype=go syntax=go
 
 " syntax check with ctrl+s
-map <c-s> :SyntasticCheck<CR>
+nnoremap <C-w>E :SyntasticCheck<CR>
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_python_checkers = ["pyflakes"]
-" let g:syntastic_javascript_checkers = ["jshint"]
+let g:syntastic_javascript_checkers = ["jshint"]
 
 " ignore syntastic errors temporarily
 map \t :SyntasticToggleMode<CR> :SyntasticToggleMode<CR>
@@ -87,7 +87,6 @@ noremap \s :Gstatus<CR>
 noremap \a :Gwrite<CR>
 
 " set t_Co=256
-syntax on
 set undofile
 set number
 set incsearch
@@ -160,6 +159,9 @@ colorscheme ironman
 let NERDTreeIgnore = ["\.pyc$"]
 autocmd  BufRead,BufNewFile *.html setfiletype htmldjango
 highlight Normal ctermbg=None
+
+" golang indentation
+autocmd FileType go setlocal noexpandtab shiftwidth=8 tabstop=8 softtabstop=4
 
 " python support
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
