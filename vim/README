@@ -68,3 +68,10 @@
     cd ~/.vim/bundle/YouCompleteMe
     ./install.sh --clang-completer
     ```
+
+    - golang tagbar
+    ```
+    go get -u github.com/jstemmer/gotags
+    mkdir -p ~/.go-vim
+    ln -s $GOPATH/bin/gotags ~/.go-vim/
+    ```
