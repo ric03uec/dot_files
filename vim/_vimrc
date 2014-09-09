@@ -34,6 +34,7 @@ Bundle "xolox/vim-session"
 Bundle "fatih/vim-go"
 Bundle "majutsushi/tagbar"
 Bundle 'ervandew/supertab'
+Bundle "altercation/vim-colors-solarized"
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -44,6 +45,11 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+syntax enable
+
+set background=dark
+colorscheme solarized
 
 set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on     " required!
@@ -77,6 +83,13 @@ noremap \d :Gdiff<CR>
 
 " disable gitgutter by default and map \f to toggle it
 let g:gitgutter_enabled = 1
+
+"highlight SignColumn guibg=darkgrey
+" highlight GitGutterAdd ctermfg=green guifg=darkgreen
+" highlight GitGutterChange ctermfg=yellow guifg=darkyellow
+" highlight GitGutterDelete ctermfg=red guifg=darkred
+"highlight GitGutterChangeDelete ctermfg=yellow guifg=darkyellow
+
 noremap \f :ToggleGitGutter<CR>
 
 " toggle line wrapping
@@ -145,6 +158,7 @@ inoremap [] []
 
 nnoremap <f4> :buffers<CR>:buffer<Space>
 nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F7> :TagbarOpen fj<CR>
 nmap <C-x> :w<CR>
 " move down/up row-wise instead of line-wise
 nmap j gj
@@ -155,7 +169,6 @@ nmap <cr> G
 set laststatus=2
 set t_Co=256
 
-colorscheme ironman
 let NERDTreeIgnore = ["\.pyc$"]
 autocmd  BufRead,BufNewFile *.html setfiletype htmldjango
 highlight Normal ctermbg=None
