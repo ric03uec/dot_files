@@ -242,6 +242,8 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
+let g:Powerline_colorscheme='solarized256_dark'
+
 " go settings
 let g:go_play_open_browser = 0
 let g:go_fmt_fail_silently = 1
