@@ -65,3 +65,4 @@ cp -vr _vimrc ~/.vimrc
 ###################################################
 vim -c BundleInstall
 
+sudo npm install -g jshint
