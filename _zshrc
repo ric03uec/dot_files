@@ -59,9 +59,8 @@ plugins=(git ubuntu colorize vundle copyfile dirhistory rsync)
 
 # User configuration
 
-export PATH="/home/devashish/bin:/home/devashish/.gvm/pkgsets/go1.3.1/global/bin:/home/devashish/.gvm/gos/go1.3.1/bin:/home/devashish/.gvm/pkgsets/go1.3.1/global/overlay/bin:/home/devashish/.gvm/bin:/home/devashish/.gvm/bin:/home/devashish/.rvm/gems/ruby-2.1.2/bin:/home/devashish/.rvm/gems/ruby-2.1.2@global/bin:/home/devashish/.rvm/rubies/ruby-2.1.2/bin:/home/devashish/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/local/go/bin:/usr/local/go/bin:/home/devashish/workspace/go/bin:/home/devashish/.rvm/bin:/home/devashish/.rvm/bin:/home/devashish/.bin:/home/devashish/.rvm/bin"
+export PATH="$PATH:/home/devashish/bin:$GOPATH/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH=$PATH:/home/devashish/workspace/shippable/micro/gol/bin
 
 source $ZSH/oh-my-zsh.sh
 
