@@ -1,10 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/devashish/.oh-my-zsh
 export TERM=screen-256color-bce
-export GOROOT=/usr/local/go
 export GOPATH=$HOME/workspace/go
-export PATH=$PATH:$GOROOT/bin
-export GOROOT_BOOTSTRAP=$GOROOT
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -113,8 +110,3 @@ alias dtf='find . -type f \( -name "*.swp" \) -delete'
 alias py='python'
 alias e='echo'
 alias rmc='sudo docker rm $(docker ps -a -q)'
-
-
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
