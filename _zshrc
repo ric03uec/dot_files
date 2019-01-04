@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/devashish/.oh-my-zsh
 export TERM=screen-256color-bce
+export GO111MODULE=on
 export GOPATH=$HOME/workspace/go
 
 # Set name of the theme to load.
@@ -89,7 +90,6 @@ source $ZSH/oh-my-zsh.sh
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
 alias ga='git add'
 alias gp='git push'
 alias gl='git log'
@@ -105,8 +105,5 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias v='vim'
-#alias aws='ssh -i ~/.ssh/sandbox.pem ubuntu@176.34.61.209'
 alias dtf='find . -type f \( -name "*.swp" \) -delete'
-alias py='python'
-alias e='echo'
 alias rmc='sudo docker rm $(docker ps -a -q)'
