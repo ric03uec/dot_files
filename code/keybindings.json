@@ -1,0 +1,29 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+shift+l",
+        "command": "extension.vim_navigateCtrlL",
+        "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-extension.vim_navigateCtrlL",
+        "when": "editorTextFocus && vim.active && vim.use<C-l> && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+P",
+        "command": "dendron.showPreview"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "dendron.lookup"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.showAllEditors"
+    },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+h"
+  },
+]

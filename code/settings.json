@@ -1,0 +1,43 @@
+{
+    "editor.fontSize": 12,
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Solarized Dark+",
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#135564",
+    },
+    "spellright.language": [ "en_Am" ],
+    "spellright.suggestionsInHints": false,
+    "spellright.documentTypes": [ "plaintext", "markdown", "latex" ],
+    "spellright.ignoreFiles": [ "**/.gitignore", "**/.spellignore" ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": [ "<Esc>"]
+        }
+    ],
+    "vim.leader": ",",
+    "vim.hlsearch": true,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "markdown.preview.fontSize": 6,
+    "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false
+    },
+    "files.trimTrailingWhitespace": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["leader", "w"],
+      "commands": [
+          "workbench.action.files.save",
+      ]
+    },
+    {
+        "before": [ "leader", "q" ],
+        "commands": [
+            ":wq"
+        ]
+    }
+}
