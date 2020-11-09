@@ -48,7 +48,55 @@ DISABLE_AUTO_TITLE="true"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
+##############################################################################
+# History Configuration
+##############################################################################
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=5000               #Number of history entries to save to disk
 
+## History wrapper
+function omz_history {
+  local clear list
+  zparseopts -E c=clear l=list
+
+  if [[ -n "$clear" ]]; then
+    # if -c provided, clobber the history file
+    echo -n >| "$HISTFILE"
+    fc -p "$HISTFILE"
+    echo >&2 History file deleted.
+  elif [[ -n "$list" ]]; then
+    # if -l provided, run as if calling `fc' directly
+    builtin fc "$@"
+  else
+    # unless a number is provided, show all history events (starting from 1)
+    [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
+  fi
+}
+
+# Timestamp format
+case ${HIST_STAMPS-} in
+  "mm/dd/yyyy") alias history='omz_history -f' ;;
+  "dd.mm.yyyy") alias history='omz_history -E' ;;
+  "yyyy-mm-dd") alias history='omz_history -i' ;;
+  "") alias history='omz_history' ;;
+  *) alias history="omz_history -t '$HIST_STAMPS'" ;;
+esac
+
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
+[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
+
+## History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+
+## END history wrapper
+#
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -56,7 +104,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras go golang ubuntu colorize vundle copyfile dirhistory rsync aws cp docker kubectl node rust systemd tmux vault)
+plugins=(git git-extras golang ubuntu colorize vundle copyfile dirhistory rsync aws cp docker kubectl node rust systemd tmux vault)
 
 # User configuration
 
@@ -109,12 +157,6 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 alias v='vim'
-#alias aws='ssh -i ~/.ssh/sandbox.pem ubuntu@176.34.61.209'
-alias dmicro='ssh -i ~/.ssh/dev-micro.pem devashish@54.251.101.89'
-alias svagrant='ssh shippable@192.168.33.10'
-alias dsmall='ssh devashish@54.251.101.89'
-alias dv='ssh devashish@192.168.33.10'
-alias accr='ssh devashish@54.235.209.43'
 alias dtf='find . -type f \( -name "*.swp" \) -delete'
 alias py='python'
 alias e='echo'
@@ -133,3 +175,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
