@@ -21,12 +21,24 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 80,
     "markdown.preview.fontSize": 6,
+    "editor.minimap.enabled": false,
+    "editor.occurrencesHighlight": false,
     "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
     "[markdown]": {
         "editor.wordWrap": "on",
         "editor.quickSuggestions": false
     },
     "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/ve": true,
+        "**/VENV": true,
+        "**/shoonya": true
+    },
     "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["leader", "w"],
@@ -35,9 +47,27 @@
       ]
     },
     {
+      "before": ["leader", "space"],
+      "commands": [
+          ":nohl",
+      ]
+    },
+    {
         "before": [ "leader", "q" ],
         "commands": [
             ":wq"
         ]
+    },
+    {
+        "before": ["<leader>", "t"],
+        "commands": [
+            "workbench.action.toggleSidebarVisibility"
+        ]
+    },
+    {
+        "before": ["<leader>", "f"],
+        "commands": [
+            "revealInExplorer"
+        ],
     }
 }
