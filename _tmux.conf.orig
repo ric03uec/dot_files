@@ -46,6 +46,7 @@ set -g window-status-current-style "fg=white,bg=red,bright"
 set -g status-left '#[fg=green,bright]#H #[fg=black]• #[fg=green,bright]#(uname -r | cut -c 1-6) #[fg=green,bright] #S > #W'
 set -g status-right '#[fg=green,bg=black,bright]#(tmux-mem-cpu-load 1) #[fg=red,dim]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white]%a%l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d'
 
+<<<<<<< HEAD
 # default statusbar colors
 set -g status-style fg=white,bright
 set -g status-style bg=black
@@ -101,11 +102,22 @@ set-window-option -g window-status-current-style bg=red
 set-window-option -g mode-keys vi
 
 # hjkl pane traversal
+=======
+##### PANE & WINDOW BINDINGS #####
+
+# New windows and splits open in current path
+bind c new-window -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Vim-style pane navigation
+>>>>>>> master
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+<<<<<<< HEAD
 
 ## Cursor navigation for wezterm
 
@@ -117,14 +129,23 @@ bind -n M-Left  send-keys C-a
 bind -n M-Right send-keys C-e
 
 # reload config
+=======
+# Reload config
+>>>>>>> master
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 ##### BEHAVIOR #####
 
+<<<<<<< HEAD
 # color
 # set -g default-terminal "screen-256color"
 set -g default-terminal "xterm-256color"
 set-option -ga terminal-overrides ",xterm-256color:Tc"
+=======
+# Highlight activity
+setw -g monitor-activity on
+set -g visual-activity on
+>>>>>>> master
 
 # Use vi-style copy mode
 set -g mode-keys vi
@@ -142,6 +163,7 @@ set -g @tpm_plugins "              \
 
 # Initialize TMUX plugin manager
 run-shell ~/.tmux/plugins/tpm/tpm
+<<<<<<< HEAD
 
 #### COLOUR (Solarized 256)
 
@@ -177,3 +199,19 @@ set-option -g display-panes-colour colour166 #orange
 set-window-option -g clock-mode-colour colour64 #green
 
 run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
+=======
+run-shell ~/.tmux/vendor/tmux-resurrect/resurrect.tmux
+
+##### OPTIONAL: SOLARIZED COLOR SCHEME #####
+# Uncomment these to enable Solarized 256 theme
+
+# set -g status-style "fg=colour136,bg=colour235"
+# set -g window-status-style "fg=colour244,bg=default"
+# set -g window-status-current-style "fg=colour166,bg=default"
+# set -g pane-border-style "fg=colour235"
+# set -g pane-active-border-style "fg=colour240"
+# set -g message-style "fg=colour166,bg=colour235"
+# set -g display-panes-active-colour colour33
+# set -g display-panes-colour colour166
+
+>>>>>>> master

@@ -1,11 +1,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/devashish/.oh-my-zsh
-export TERM=screen-256color-bce
-export GOROOT=/usr/local/go
+# export TERM=screen-256color-bce
+export TERM=tmux-256color
+export EDITOR=nvim
 export GO111MODULE=on
 export GOPATH=$HOME/workspace/go
 export GOBIN=$GOPATH/bin
-export GOROOT_BOOTSTRAP=$GOROOT
+#export GOROOT=/usr/local/go
+#export GOROOT_BOOTSTRAP=$GOROOT
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -48,55 +50,7 @@ DISABLE_AUTO_TITLE="true"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
-##############################################################################
-# History Configuration
-##############################################################################
-HISTSIZE=5000               #How many lines of history to keep in memory
-HISTFILE=~/.zsh_history     #Where to save history to disk
-SAVEHIST=5000               #Number of history entries to save to disk
 
-## History wrapper
-function omz_history {
-  local clear list
-  zparseopts -E c=clear l=list
-
-  if [[ -n "$clear" ]]; then
-    # if -c provided, clobber the history file
-    echo -n >| "$HISTFILE"
-    fc -p "$HISTFILE"
-    echo >&2 History file deleted.
-  elif [[ -n "$list" ]]; then
-    # if -l provided, run as if calling `fc' directly
-    builtin fc "$@"
-  else
-    # unless a number is provided, show all history events (starting from 1)
-    [[ ${@[-1]-} = *[0-9]* ]] && builtin fc -l "$@" || builtin fc -l "$@" 1
-  fi
-}
-
-# Timestamp format
-case ${HIST_STAMPS-} in
-  "mm/dd/yyyy") alias history='omz_history -f' ;;
-  "dd.mm.yyyy") alias history='omz_history -E' ;;
-  "yyyy-mm-dd") alias history='omz_history -i' ;;
-  "") alias history='omz_history' ;;
-  *) alias history="omz_history -t '$HIST_STAMPS'" ;;
-esac
-
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-[ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
-[ "$SAVEHIST" -lt 10000 ] && SAVEHIST=10000
-
-## History command configuration
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt share_history          # share command history data
-
-## END history wrapper
-#
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -104,11 +58,11 @@ setopt share_history          # share command history data
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras golang ubuntu colorize vundle copyfile dirhistory rsync aws cp docker kubectl node rust systemd tmux vault)
+plugins=(git ubuntu colorize vundle copyfile dirhistory rsync)
 
 # User configuration
 
-export PATH="$PATH:/home/devashish/bin:$GOROOT/bin:$GOPATH/bin"
+export PATH="$PATH:/home/devashish/bin:$GOPATH/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -156,13 +110,12 @@ alias gra='git remote add'
 alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
-alias v='vim'
+alias v='nvim'
+alias vim='nvim'
 alias dtf='find . -type f \( -name "*.swp" \) -delete'
 alias py='python'
 alias e='echo'
 alias rmc='sudo docker rm $(docker ps -a -q)'
-
-
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
@@ -175,7 +128,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
