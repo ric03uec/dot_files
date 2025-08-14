@@ -11,10 +11,6 @@ This is a personal dotfiles repository containing configuration files and setup 
 ### Tmux Configuration
 - `./tmux/install.sh` - Initialize tmux configuration (backs up existing configs, copies from repo)
 - `./tmux/scripts/resize-adaptable.sh -l main-horizontal -p 66` - Resize tmux panes by percentage
-- **Claude Usage in Status Bar**: If tmux is installed and you want to see Claude usage costs:
-  1. Install ccusage: `npm install -g ccusage`
-  2. The status bar is already configured to show daily usage as `Claude: $XXX.XX`
-  3. Reload tmux config: `tmux source-file ~/.tmux.conf`
 
 ### Vim Setup  
 - `./vim/prepVim.sh` - Full vim installation with plugins (removes existing vim, installs from source with Python/Ruby support, sets up Vundle, YCM, powerline)
